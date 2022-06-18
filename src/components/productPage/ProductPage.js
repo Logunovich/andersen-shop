@@ -17,9 +17,7 @@ const ProductPage = () => {
     onRequest();
   }, []);
 
-  const onRequest = (offset, e) => {
-    e?.preventDefault();
-
+  const onRequest = () => {
     storeService.getProduct(id)
       .then(productLoaded)
       .catch(() => {
@@ -41,7 +39,6 @@ const ProductPage = () => {
       </div>
     )
   }
-
 
   return (
     <div className={styles.product__page}>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from "../header";
 import ProductList from "../productList";
@@ -28,22 +28,13 @@ const App = () => {
         <Header 
           isLogged={isLogged}
           toggleLogin={toggleLogin}/>
-        <Switch>
-          <Route exact path="/">
-            <ProductList
-              isLogged={isLogged}/>
-          </Route>
-          <Route exact path="/products/:productId">
-            <ProductPage
-              isLogged={isLogged}/>
-          </Route>
-          <Route exact path="/about">
-            <About/>
-          </Route>
-          <Route exact path="*">
-            <Page404/>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<ProductList isLogged={isLogged}/>}/>
+          <Route path="/products/:productId" element={<ProductPage isLogged={isLogged}/>}/>
+
+          <Route path="/about" element={<About/>}/>
+          <Route path="*" element={<Page404/>}/>
+        </Routes>
       </div>
     </Router>
   )
