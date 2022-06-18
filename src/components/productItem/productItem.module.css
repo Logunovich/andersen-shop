@@ -42,3 +42,9 @@
   color: rgb(158, 92, 92);
   margin: 10px 0;
 }
+
+.info__block {
+  font-size: 12px;
+  color: rgb(170, 170, 170);
+  width: 80%;
+}

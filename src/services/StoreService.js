@@ -1,5 +1,6 @@
 class StoreService {
-  _apiStore = 'https://fakestoreapi.com/products';
+  _apiStore = 'https://api.escuelajs.co/api/v1/products';
+  _initialOffset = 0;
 
   getResource = async (url) => {
     let res = await fetch(url);
@@ -11,8 +12,8 @@ class StoreService {
     return await res.json();
   } 
 
-  getAllProducts = () => {
-    return this.getResource(`${this._apiStore}?limit=12`);
+  getAllProducts = (offset = this._initialOffset) => {
+    return this.getResource(`${this._apiStore}?offset=${offset}&limit=12`);
   }
 
   getProduct = (id) => {

@@ -1,20 +1,30 @@
 import styles from './productItem.module.css';
+import { Link } from 'react-router-dom';
 
 import Button from '../button';
 
-const ProductItem = ({img, title, price, id}) => {
+const ProductItem = ({img, title, price, id, isLogged, onRequest}) => {
+  const defaultImg = 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg';
+  const isLoggedInfo = (
+    <div className={styles.info__block}>
+      Для добавления товара в корзину авторизуйтесь
+    </div>
+  )
   return (
     <div className={styles.product__item}>
-      <div className={styles.product__img}>
-        <img src={img} alt={title} />
-      </div>
       <div className={styles.product__title}>
-        <a href={id}>{title}</a>
+        <Link to={`/products/${id}`}>{title}</Link>
+      </div>
+      <div className={styles.product__img}>
+        <img src={img || defaultImg} alt={title} />
       </div>
       <div className={styles.product__price}>
         ${price}
       </div>
-      <Button value={'В корзину'}/>
+      {isLogged ? <Button 
+        value={'В корзину'}
+        /> 
+        : isLoggedInfo}
     </div>
   )
 }
