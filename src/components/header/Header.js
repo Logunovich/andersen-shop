@@ -2,7 +2,7 @@ import styles from './header.module.css';
 
 import Button from '../button';
 
-const Header = () => {
+const Header = ({isLogged, toggleLogin}) => {
   return (
     <div className={styles.header}>
       <div className={styles.menu__block}>
@@ -14,7 +14,8 @@ const Header = () => {
         </nav>
       </div>
       <Button
-        value={'Войти'}/>
+        value={isLogged ? 'Выйти' : 'Войти'}
+        toggleLogin={toggleLogin}/>
     </div>
   )
 }

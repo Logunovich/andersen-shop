@@ -1,9 +1,9 @@
 import styles from './button.module.css';
 
-const Button = ({value}) => {
+const Button = ({value, toggleLogin}) => {
   return (
     <div className={styles.cart__block}>
-      <a href="https://dalfkj.ru">{value}</a>
+      <a href="#" onClick={toggleLogin}>{value}</a>
     </div>
   )
 }
