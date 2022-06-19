@@ -1,5 +1,4 @@
 import styles from './productList.module.css';
-
 import { useEffect, useState } from 'react';
 
 import ProductItem from '../productItem';
@@ -27,6 +26,7 @@ const ProductList = ({isLogged}) => {
     e?.preventDefault();
 
     onProductsLoading();
+
     storeService.getAllProducts(offset)
       .then(productsLoaded)
       .catch(() => {
@@ -43,6 +43,7 @@ const ProductList = ({isLogged}) => {
     if (products.length < 12) {
       setProductsEnded(true)
     }
+    
     const newProducts = products.map((item) => {
       return {...item, amount: 10}
     });
@@ -50,8 +51,10 @@ const ProductList = ({isLogged}) => {
     setProducts(oldProducts => {
       return [...oldProducts, ...newProducts];
     });
+
     setLoading(false);
     setNewProductsLoading(false);
+
     setOffset(offset => {
       return offset += 12;
     })
@@ -79,7 +82,9 @@ const ProductList = ({isLogged}) => {
   return (
       <div className={styles.list__wrapper}>
         <div className={styles.product__list}>
-          {loading ? <Spinner/> : error ? <ErrorFetch/> : renderProducts()}
+          {loading ? <Spinner/> : 
+          error ? <ErrorFetch/> : 
+          renderProducts()}
         </div>
         <div className={styles.btn__block}>
           {loading ? null : 
@@ -89,11 +94,10 @@ const ProductList = ({isLogged}) => {
             value={'Загрузить еще'}
             handle={(e) => onRequest(offset, e)}
             isDisabled={newProductsLogain}
-          />
-            }
+          />}
         </div>
       </div>
-  )
+    )
 }
 
 export default ProductList;

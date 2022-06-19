@@ -15,6 +15,7 @@ const ProductItem = ({img, title, price, id, isLogged, amount}) => {
       {`В наличии: ${amount} шт.`}
     </div>
   )
+
   return (
     <div className={styles.product__item}>
       <div className={styles.product__title}>
@@ -28,9 +29,8 @@ const ProductItem = ({img, title, price, id, isLogged, amount}) => {
       </div>
       <div>
         {isLogged ? <Button 
-        value={'В корзину'}
-        /> 
-        : isLoggedInfo}
+                      value={'В корзину'}/> : 
+                    isLoggedInfo}
       </div>
         {isLogged ? amountInfo : null}
     </div>

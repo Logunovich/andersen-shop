@@ -12,7 +12,14 @@ import styles from './app.module.css';
 
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
+  const [isModalLoginOpen, setIsModalLoginOpen] = useState(false);
+
+  const toggelOpenModal = () => {
+    setIsModalLoginOpen((val) => {
+      return !val
+    })
+  }
   
   const toggleLogin = (e) => {
     e.preventDefault();
@@ -27,14 +34,14 @@ const App = () => {
       <div className={styles.app}>
         <Header 
           isLogged={isLogged}
-          toggleLogin={toggleLogin}/>
+          toggelOpenModal={toggelOpenModal}/>
         <Routes>
           <Route path="/" element={<ProductList isLogged={isLogged}/>}/>
           <Route path="/products/:productId" element={<ProductPage isLogged={isLogged}/>}/>
-
           <Route path="/about" element={<About/>}/>
           <Route path="*" element={<Page404/>}/>
         </Routes>
+        {isModalLoginOpen ? <LogModal toggelOpenModal={toggelOpenModal}/> : null}
       </div>
     </Router>
   )

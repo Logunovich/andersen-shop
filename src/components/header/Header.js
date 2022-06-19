@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Button from '../button';
 
-const Header = ({isLogged, toggleLogin}) => {
+const Header = ({isLogged, toggelOpenModal}) => {
   const cartBlock = (
     <div className={styles.cart__block}>
     <div className={styles.count__products}>
@@ -28,7 +28,7 @@ const Header = ({isLogged, toggleLogin}) => {
       {isLogged ? cartBlock : null}
       <Button
         value={isLogged ? 'Выйти' : 'Войти'}
-        handle={toggleLogin}/>
+        handle={toggelOpenModal}/>
     </div>
   )
 }

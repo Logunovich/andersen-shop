@@ -8,6 +8,8 @@
 
 .product__img {
   min-width: 500px;
+  max-width:500px;
+  overflow: hidden;
 }
 
 .product__img img {

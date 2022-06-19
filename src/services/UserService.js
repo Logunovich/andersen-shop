@@ -1,6 +1,6 @@
 class UserService {
     _apiUsers = 'https://api.escuelajs.co/api/v1/users';
-    _apiIsAvailable = 'https://api.escuelajs.co/api/v1/users/is-available';
+    _apiLogin = 'https://api.escuelajs.co/api/v1/auth/login';
   
     getResource = async (url) => {
       let res = await fetch(url);
@@ -16,22 +16,20 @@ class UserService {
       return this.getResource(`${this._apiUsers}`);
     }
 
-    postData = async (data = {}, url = this._apiIsAvailable) => {
-        // Default options are marked with *
+    login = async (data = {}, url = this._apiLogin) => {
         const response = await fetch(url, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
+          method: 'POST', 
+          mode: 'cors', 
+          cache: 'no-cache', 
+          credentials: 'same-origin', 
           headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
-          redirect: 'follow', // manual, *follow, error
-          referrerPolicy: 'no-referrer', // no-referrer, *client
-          body: JSON.stringify(data) // body data type must match "Content-Type" header
+          redirect: 'follow', 
+          referrerPolicy: 'no-referrer', 
+          body: JSON.stringify(data) 
         });
-        return await response.json(); // parses JSON response into native JavaScript objects
+        return await response.json(); 
       }
   }
   

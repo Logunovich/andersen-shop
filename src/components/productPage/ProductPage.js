@@ -6,9 +6,11 @@ import StoreService from '../../services/StoreService';
 import Spinner from '../spinner/Spinner';
 import ErrorFetch from '../errorFetch';
 import Button from '../button';
+import Galery from '../galery';
 
 const ProductPage = ({isLogged}) => {
   const storeService = new StoreService();
+  
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false)
@@ -42,7 +44,8 @@ const ProductPage = ({isLogged}) => {
     return (
       <div className={styles.product__block}>
         <div className={styles.product__img}>
-          <img src={images[0]} alt={title} />
+          {/* <img src={images[0]} alt={title} /> */}
+          <Galery images={images} alt={title}/>
         </div>
         <div className={styles.product__info}>
           <div className={styles.product__title}>
