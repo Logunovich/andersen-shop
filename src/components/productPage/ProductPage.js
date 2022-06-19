@@ -5,13 +5,19 @@ import { useState, useEffect } from 'react';
 import StoreService from '../../services/StoreService';
 import Spinner from '../spinner/Spinner';
 import ErrorFetch from '../errorFetch';
+import Button from '../button';
 
-const ProductPage = () => {
+const ProductPage = ({isLogged}) => {
   const storeService = new StoreService();
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false)
   const id = useParams().productId;
+  const isLoggedInfo = (
+    <div className={styles.info__block}>
+      Для добавления товара в корзину авторизуйтесь
+    </div>
+  )
 
   useEffect(() => {
     onRequest();
@@ -32,10 +38,30 @@ const ProductPage = () => {
   }
 
   const renderProduct = () => {
+    const { title, images, description, price, category } = product;
     return (
-      <div>
-        Id: {product.id}
-        Name: {product.title}
+      <div className={styles.product__block}>
+        <div className={styles.product__img}>
+          <img src={images[0]} alt={title} />
+        </div>
+        <div className={styles.product__info}>
+          <div className={styles.product__title}>
+            <h1>{title}</h1>
+          </div>
+          <div className={styles.product__category}>
+          {`Категория: ${category.name}`}
+        </div>
+          <div className={styles.product__text}>
+            <p>{description}</p>
+          </div>
+          <div className={styles.product__price}>
+            {`$${price}`}
+          </div>
+          {isLogged ? <Button 
+            value={'В корзину'}
+            /> 
+            : isLoggedInfo}
+        </div>
       </div>
     )
   }

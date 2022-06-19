@@ -43,9 +43,12 @@ const ProductList = ({isLogged}) => {
     if (products.length < 12) {
       setProductsEnded(true)
     }
+    const newProducts = products.map((item) => {
+      return {...item, amount: 10}
+    });
 
     setProducts(oldProducts => {
-      return [...oldProducts, ...products];
+      return [...oldProducts, ...newProducts];
     });
     setLoading(false);
     setNewProductsLoading(false);
@@ -65,6 +68,7 @@ const ProductList = ({isLogged}) => {
           title={item.title}
           img={item.images[0]}
           id={item.id}
+          amount={item.amount}
         />
       )
     });

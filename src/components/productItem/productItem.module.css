@@ -44,7 +44,14 @@
 }
 
 .info__block {
+  margin: 0 auto;
   font-size: 12px;
-  color: rgb(170, 170, 170);
+  color: gray;
   width: 80%;
+}
+
+.product__amount {
+  font-size: 9px;
+  margin: 5px auto;
+  color: rgb(173, 173, 173);
 }
