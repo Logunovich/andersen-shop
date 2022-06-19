@@ -55,3 +55,8 @@
   margin: 5px auto;
   color: rgb(173, 173, 173);
 }
+
+.product__noproduct {
+  color: rgb(218, 149, 149);
+  margin: 0 0 28px 0;
+}

@@ -1,14 +1,24 @@
 import styles from './logModal.module.css';
-import { useState } from 'react';
 
-import Button from '../button';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import UserService from '../../services/UserService';
+import Button from '../button';
 
 const LogModal = ({toggelOpenModal, toggleLogin}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [errorLogin, setErrorLogin] = useState(false);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
+
+    const newRequest = new UserService();
+
+    const goHome = () => {
+        navigate('/');
+    }
 
     const errorText = (
         <div className={styles.module__error}>
@@ -20,8 +30,6 @@ const LogModal = ({toggelOpenModal, toggleLogin}) => {
         setFunction(e.target.value)
     }
 
-    const newRequest = new UserService();
-
     const loginRequest = () => {
         setLoading(true);
 
@@ -30,6 +38,7 @@ const LogModal = ({toggelOpenModal, toggleLogin}) => {
             "password": password
           })
           .then(item => loginUser(!!item.access_token))
+          .catch(() => console.log('Error'))
     }
 
     const loginUser = (res) => {
@@ -40,7 +49,8 @@ const LogModal = ({toggelOpenModal, toggleLogin}) => {
         } else {
             toggleLogin();
             toggelOpenModal();
-            setErrorLogin(false)
+            setErrorLogin(false);
+            goHome();
         }
     }
 

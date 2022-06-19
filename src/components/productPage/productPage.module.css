@@ -51,3 +51,14 @@
   color: rgb(170, 170, 170);
   width: 80%;
 }
+
+.product__amount {
+  color: gray;
+  margin: 0 0 5px 0;
+  font-size: 12px;
+}
+
+.no__product {
+  color: rgb(207, 92, 92);
+  font-size: 30px;
+}

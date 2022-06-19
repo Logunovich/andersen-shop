@@ -13,8 +13,8 @@ const Header = ({isLogged, toggelOpenModal, toggleLogin, cart}) => {
       На сумму: <span className={styles.price__cart}>${cart.sum}</span>
     </div>
   </div>
-
   )
+  
   return (
     <div className={styles.header}>
       <div className={styles.menu__block}>

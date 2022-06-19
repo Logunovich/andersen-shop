@@ -1,5 +1,5 @@
 import styles from './productPage.module.css';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import StoreService from '../../services/StoreService';
@@ -8,19 +8,31 @@ import ErrorFetch from '../errorFetch';
 import Button from '../button';
 import Galery from '../galery';
 
-const ProductPage = ({isLogged}) => {
-  const storeService = new StoreService();
-
+const ProductPage = ({isLogged, amountProducts, addProductToCart}) => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false)
   const id = useParams().productId;
+  
+  const storeService = new StoreService();  
   
   const isLoggedInfo = (
     <div className={styles.info__block}>
       Для добавления товара в корзину авторизуйтесь
     </div>
   );
+
+  const amounInfo = (
+    <div className={styles.product__amount}>
+      {`В наличии: ${amountProducts[id]} шт.`}
+    </div>
+  )
+
+  const noProduct = (
+    <div className={styles.no__product}>
+      Нет в наличии!
+    </div>
+  )
 
   useEffect(() => {
     onRequest();
@@ -62,10 +74,12 @@ const ProductPage = ({isLogged}) => {
           <div className={styles.product__price}>
             {`$${price}`}
           </div>
-          {isLogged ? <Button 
-            value={'В корзину'}
-            /> 
-            : isLoggedInfo}
+          {amountProducts[id] > 0 ? amounInfo : null}
+          {amountProducts[id] === 0 ? noProduct : 
+           isLogged ? <Button 
+                        value={'В корзину'}
+                        handle={() => addProductToCart(id, price)} /> :
+           isLoggedInfo}
         </div>
       </div>
     )
@@ -73,7 +87,9 @@ const ProductPage = ({isLogged}) => {
 
   return (
     <div className={styles.product__page}>
-      {loading ? <Spinner/> : error ? <ErrorFetch/> : renderProduct()}
+      {loading ? <Spinner/> : 
+       error ? <ErrorFetch/> : 
+       renderProduct()}
     </div>
   )  
 }
