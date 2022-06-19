@@ -9,12 +9,12 @@ const ProductItem = ({img, title, price, id, isLogged, amount}) => {
     <div className={styles.info__block}>
       Для добавления товара в корзину авторизуйтесь
     </div>
-  )
+  );
   const amountInfo = (
     <div className={styles.product__amount}>
       {`В наличии: ${amount} шт.`}
     </div>
-  )
+  );
 
   return (
     <div className={styles.product__item}>

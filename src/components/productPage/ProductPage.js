@@ -10,16 +10,17 @@ import Galery from '../galery';
 
 const ProductPage = ({isLogged}) => {
   const storeService = new StoreService();
-  
+
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false)
   const id = useParams().productId;
+  
   const isLoggedInfo = (
     <div className={styles.info__block}>
       Для добавления товара в корзину авторизуйтесь
     </div>
-  )
+  );
 
   useEffect(() => {
     onRequest();
@@ -37,14 +38,15 @@ const ProductPage = ({isLogged}) => {
   const productLoaded = (product) => {
     setProduct(product);
     setLoading(false);
+    document.title = product.title;
   }
 
   const renderProduct = () => {
     const { title, images, description, price, category } = product;
+
     return (
       <div className={styles.product__block}>
         <div className={styles.product__img}>
-          {/* <img src={images[0]} alt={title} /> */}
           <Galery images={images} alt={title}/>
         </div>
         <div className={styles.product__info}>

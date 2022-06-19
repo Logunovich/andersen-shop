@@ -11,7 +11,7 @@
 .modal__block {
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
-    width: 500px;
+    width: 300px;
     margin: 30px auto;
     padding: 20px;
     position: relative;
@@ -74,4 +74,16 @@
 .close__btn:hover {
     cursor: pointer;
     color: rgb(204, 204, 204);
+}
+
+.module__error {
+    text-align: center;
+    color: red;
+}
+
+.login__info {
+    font-size: 15px;
+    color: gray;
+    text-align: center;
+    margin: 0 0 20px 0;
 }

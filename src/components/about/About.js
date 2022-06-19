@@ -1,6 +1,8 @@
 import styles from './about.module.css';
 
 const About = () => {
+    document.title = 'About';
+
     return (
         <div className={styles.about__block}>
             <div className={styles.about__text}>

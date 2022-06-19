@@ -11,14 +11,15 @@ import ErrorFetch from '../errorFetch/ErrorFetch';
 const ProductList = ({isLogged}) => {
   const [loading, setLoading] = useState(true);
   const [newProductsLogain, setNewProductsLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(false);
   const [offset, setOffset] = useState(0);
   const [productsEnded, setProductsEnded] = useState(false);
   
   const storeService = new StoreService();
 
   useEffect(() => {
+    document.title = 'Andersen store'
     onRequest();
   }, []);
 
@@ -43,7 +44,7 @@ const ProductList = ({isLogged}) => {
     if (products.length < 12) {
       setProductsEnded(true)
     }
-    
+
     const newProducts = products.map((item) => {
       return {...item, amount: 10}
     });

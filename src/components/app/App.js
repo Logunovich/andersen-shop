@@ -12,8 +12,9 @@ import styles from './app.module.css';
 
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [isModalLoginOpen, setIsModalLoginOpen] = useState(false);
+  const [cart, setCart] = useState({amount: 0, sum: 0});
 
   const toggelOpenModal = () => {
     setIsModalLoginOpen((val) => {
@@ -22,7 +23,7 @@ const App = () => {
   }
   
   const toggleLogin = (e) => {
-    e.preventDefault();
+    e?.preventDefault();
 
     setIsLogged((isLogged) => {
       return !isLogged
@@ -34,14 +35,19 @@ const App = () => {
       <div className={styles.app}>
         <Header 
           isLogged={isLogged}
-          toggelOpenModal={toggelOpenModal}/>
+          toggelOpenModal={toggelOpenModal}
+          toggleLogin={toggleLogin}
+          cart={cart}/>
         <Routes>
-          <Route path="/" element={<ProductList isLogged={isLogged}/>}/>
-          <Route path="/products/:productId" element={<ProductPage isLogged={isLogged}/>}/>
+          <Route path="/" element={<ProductList isLogged={isLogged} />} />
+          <Route path="/products/:productId" element={<ProductPage isLogged={isLogged} />} />
           <Route path="/about" element={<About/>}/>
           <Route path="*" element={<Page404/>}/>
         </Routes>
-        {isModalLoginOpen ? <LogModal toggelOpenModal={toggelOpenModal}/> : null}
+        {isModalLoginOpen ? <LogModal 
+                              toggelOpenModal={toggelOpenModal}
+                              toggleLogin={toggleLogin}/> : 
+                            null}
       </div>
     </Router>
   )
